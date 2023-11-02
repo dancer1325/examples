@@ -1,14 +1,27 @@
-# How to Use it?
+# Pre requisites
+* Deploy a Ceph cluster on to a [Kubernetes cluster](https://github.com/ceph/ceph-docker/tree/master/examples/kubernetes)
+  * Tools to install
+    * [jinja2](https://github.com/mattrobenolt/jinja2-cli)
+    * [sigil](https://github.com/gliderlabs/sigil)
+      * Download and install it manually by steps -- https://github.com/gliderlabs/sigil/issues/38#issuecomment-1788846923 --
+  * requirements
+    * [SkyDNS resolution](https://github.com/ceph/ceph-container/tree/main/examples/kubernetes#skydns-resolution)
+      * Problems;
+        * Problem1: Incompatibilities to have CoreDNS + SkyDNS -- [Link](https://github.com/ceph/ceph-container/tree/main/examples/kubernetes#skydns-resolution)
+          * Solution: TODO
+* Install ceph in the Kubernetes cluster host
+  * `kubectl get nodes`
+  * `docker exec -it NodeName sh`
+    * Get into the container, running the cluster
+    * `yum -y install ceph` / `apt install -y ceph`
+* Get the keyring from the Ceph cluster and copy it to '/etc/ceph/keyring'
+  * `docker exec -it NodeName sh`
+    * Get into the container, running the ceph cluster
+    * TODO: Where to find it into the cluster exactly? Paste it into the Kubernetes host cluster or?
 
-Install Ceph on the Kubernetes host. For example, on Fedora 21
-
-    # yum -y install ceph
-
-If you don't have a Ceph cluster, you can set up a [containerized Ceph cluster](https://github.com/ceph/ceph-docker/tree/master/examples/kubernetes)
-
-Then get the keyring from the Ceph cluster and copy it to */etc/ceph/keyring*.
-
-Once you have installed Ceph and a Kubernetes cluster, you can create a pod based on my examples [cephfs.yaml](cephfs.yaml)  and [cephfs-with-secret.yaml](cephfs-with-secret.yaml). In the pod yaml, you need to provide the following information.
+# How to run it?
+* TODO: Check NEXT statements
+* Create a pod based on my examples [cephfs.yaml](cephfs.yaml)  and [cephfs-with-secret.yaml](cephfs-with-secret.yaml). In the pod yaml, you need to provide the following information.
 
 - *monitors*:  Array of Ceph monitors.
 - *path*: Used as the mounted root, rather than the full Ceph tree. If not provided, default */* is used.

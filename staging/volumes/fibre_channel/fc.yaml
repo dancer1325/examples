@@ -5,6 +5,7 @@ metadata:
 spec:
  containers:
    - image: kubernetes/pause
+     # https://console.cloud.google.com/gcr/images/google-containers
      name: fc
      volumeMounts:
        - name: fc-vol
@@ -12,8 +13,12 @@ spec:
  volumes:
    - name: fc-vol
      fc:
+#       targetWWNs:
+#         - <ADD Target WWN Here>
        targetWWNs:
-         - <ADD Target WWN Here>
-       lun: <ADD LUN ID Here>
+         - '500a0982991b8dc5'
+         - '500a0982891b8dc5'
+       #lun: <ADD LUN ID Here>
+       lun: 2
        fsType: ext4
        readOnly: true

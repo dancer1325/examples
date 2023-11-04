@@ -1,7 +1,7 @@
 # Consuming Fibre Channel Storage on Kubernetes
 
 ## Table of Contents
-
+- [Definition](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/v3/apis__storage.k8s.io__v1_openapi.json#L242)
 - [Example Parameters](#example-parameters)
 - [Step-by-Step](#step-by-step)
 - [Multipath Considerations](#multipath-considerations)
@@ -10,15 +10,17 @@
 
 ```yaml
  fc:
+   # unique id in fbc devices
    targetWWNs:
      - '500a0982991b8dc5'
      - '500a0982891b8dc5'
    lun: 2
-   fsType: ext4
-   readOnly: true
+   # fstype   file system type
+   fsType: ext4   # 4@ extended file system
+   readOnly: true # write operations to the container mounting the volume
 ```
 
-[API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#fcvolumesource-v1-core)
+[API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.28/#fcvolumesource-v1-core)
 
 ## Step-by-Step
 

@@ -18,7 +18,7 @@ spec:
       lun: 0
       fsType: ext4
       readOnly: true
-      chapAuthDiscovery: true
-      chapAuthSession: true
+      chapAuthDiscovery: true   # For discovery authentication
+      chapAuthSession: true     # For session authentication
       secretRef:
          name: chap-secret

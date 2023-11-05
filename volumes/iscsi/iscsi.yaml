@@ -13,9 +13,10 @@ spec:
   volumes:
   - name: iscsipd-rw
     iscsi:
-      targetPortal: 10.0.2.15:3260
-      portals: ['10.0.2.16:3260', '10.0.2.17:3260']
+      targetPortal: 10.0.2.15:3260  # iSCSITarget's IPAddress:iSCSITarget's Port*
+      # default iSCSITarget's Port  is 3260
+      portals: ['10.0.2.16:3260', '10.0.2.17:3260']   # if you have several targetPortals / single IQN
       iqn: iqn.2001-04.com.example:storage.kube.sys1.xyz
       lun: 0
-      fsType: ext4
+      fsType: ext4  # file system type created on the lun
       readOnly: true

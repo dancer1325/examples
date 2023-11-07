@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nfs-server
+# ClusterIP by default === only reachable within the cluster
 spec:
   ports:
     - name: nfs
@@ -11,4 +12,5 @@ spec:
     - name: rpcbind
       port: 111
   selector:
+    # Find nfs-server deployment
     role: nfs-server

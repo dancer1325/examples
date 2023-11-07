@@ -17,6 +17,11 @@ spec:
     spec:
       containers:
       - image: busybox
+        # Next command generate data written to the NFS server we just started
+        # updates `index.html` on the NFS server every 10 seconds
+        # date > /mnt/index.html;          write the current date in that file
+        # hostname >> /mnt/index.html;     appends hostname of the system to that file
+        # sleep $(($RANDOM % 5 + 5));      introduce a random sleep interval
         command:
           - sh
           - -c

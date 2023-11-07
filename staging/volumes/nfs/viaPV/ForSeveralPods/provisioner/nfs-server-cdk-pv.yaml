@@ -1,5 +1,4 @@
-# PersistentVolumeClaim for Canonical's Charmed Distribution of Kubernetes.
-
+# PersistentVolumeClaim for Canonical's Charmed Distribution of Kubernetes
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -11,5 +10,6 @@ spec:
   resources:
     requests:
       storage: 200Gi
+   # TODO: Why is it needed and not for the rest?
   storageClassName: cdk-cinder
 

@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: nfs-server
+        # TODO: Where to find the image?
         image: registry.k8s.io/volume-nfs:0.8
         ports:
           - name: nfs

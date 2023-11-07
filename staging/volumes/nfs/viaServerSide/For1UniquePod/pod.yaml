@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+    - image: busybox
+      # Next command generate data written to the NFS server we just started
+      # updates `index.html` on the NFS server every 10 seconds
+      # date > /mnt/index.html;          write the current date in that file
+      # hostname >> /mnt/index.html;     appends hostname of the system to that file
+      # sleep $(($RANDOM % 5 + 5));      introduce a random sleep interval
+      command:
+        - sh
+        - -c
+        - 'while true; do date > /mnt/index.html; hostname >> /mnt/index.html; sleep $(($RANDOM % 5 + 5)); done'
+      name: test-container
+      volumeMounts:
+        - mountPath: /mnt
+          name: test-volume
+  volumes:
+    - name: test-volume
+      nfs:
+        server: nfs-server.default.svc.cluster.local
+        path: /
+        readOnly: false

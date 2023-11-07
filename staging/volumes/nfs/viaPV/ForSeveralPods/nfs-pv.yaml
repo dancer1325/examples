@@ -7,8 +7,10 @@ spec:
     storage: 1Mi
   accessModes:
     - ReadWriteMany
+  # NFS volume
   nfs:
-    server: nfs-server.default.svc.cluster.local
+    server: nfs-server.default.svc.cluster.local  # symbolic name, rather than hardcoded one
     path: "/"
+  # Configure NFS options via PV
   mountOptions:
     - nfsvers=4.2
